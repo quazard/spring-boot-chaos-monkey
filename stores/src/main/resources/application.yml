@@ -1,1 +1,25 @@
+server:
+  port: 8081
 
+spring:
+  data:
+    mongodb:
+      uri: mongodb://root:example@127.0.0.1:27017
+      database: chaos
+  jackson:
+    default-property-inclusion: NON_NULL
+
+chaos:
+  monkey:
+    watcher:
+      restController: true
+      repository: true
+
+management:
+  endpoint:
+    chaosmonkey:
+      enabled: true
+  endpoints:
+    web:
+      exposure:
+        include: chaosmonkey

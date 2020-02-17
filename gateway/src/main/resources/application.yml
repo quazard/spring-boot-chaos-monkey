@@ -1,0 +1,18 @@
+server:
+  port: 80
+
+management:
+  health:
+    circuitbreaker:
+      enabled: true
+
+resilience4j.retry:
+  configs:
+    default:
+      maxRetryAttempts: 1
+      waitDuration: 100
+
+resilience4j:
+  configs:
+    default:
+      timeoutDuration: 1s
