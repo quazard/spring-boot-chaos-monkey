@@ -2,11 +2,11 @@ package com.example.gateway.model;
 
 import com.example.gateway.model.response.ProductResponse;
 import com.example.gateway.model.response.StoreResponse;
+import lombok.Builder;
 import lombok.Getter;
-import lombok.Setter;
 
 @Getter
-@Setter
+@Builder
 public class StartPage {
 
     private ProductResponse productsResponse;

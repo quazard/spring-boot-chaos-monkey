@@ -16,3 +16,9 @@ resilience4j:
   configs:
     default:
       timeoutDuration: 1s
+
+clients:
+  products:
+    host: ${PRODUCTS_HOST}
+  stores:
+    host: ${STORES_HOST}

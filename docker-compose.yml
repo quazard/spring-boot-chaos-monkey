@@ -1,0 +1,58 @@
+version: '3.0'
+
+services:
+
+  mongodb:
+    container_name: chaos-monkey-mongodb
+    image: mongo:4.2.3
+    ports:
+      - 27017:27017
+    volumes:
+      - mongodb-volume:/data/db
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: example
+      MONGO_INITDB_DATABASE: chaos
+  
+  products-service:
+    container_name: products-service
+    image: products-service:1.0.0
+    build:
+      context: .
+      dockerfile: Dockerfile
+      args:
+        appPath: ./products
+    ports:
+      - 8080:8080
+    environment:
+      MONGODB_URI: "mongodb://root:example@mongodb:27017"
+
+  stores-service:
+    container_name: stores-service
+    image: stores-service:1.0.0
+    build:
+      context: .
+      dockerfile: Dockerfile
+      args:
+        appPath: ./stores
+    ports:
+      - 8081:8081
+    environment:
+      MONGODB_URI: "mongodb://root:example@mongodb:27017"
+
+  gateway-service: 
+    container_name: gateway-service
+    image: gateway-service:1.0.0
+    build:
+      context: .
+      dockerfile: Dockerfile
+      args:
+        appPath: ./gateway
+    ports:
+      - 80:80
+    environment:
+      PRODUCTS_HOST: "http://products-service:8080"
+      STORES_HOST: "http://stores-service:8081"
+
+volumes:
+  mongodb-volume:
