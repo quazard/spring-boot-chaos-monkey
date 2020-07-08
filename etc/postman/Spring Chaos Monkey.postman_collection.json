@@ -1,0 +1,213 @@
+{
+	"info": {
+		"_postman_id": "ebc20ecb-7d42-4fa6-8335-d97ccb5da823",
+		"name": "Spring Chaos Monkey",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "products",
+			"item": [
+				{
+					"name": "Get all products",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost/v1/products",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"path": [
+								"v1",
+								"products"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create product",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"Xbox One\",\n    \"description\": \"Videogame console\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost/v1/products",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"path": [
+								"v1",
+								"products"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "stores",
+			"item": [
+				{
+					"name": "Get all stores",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost/v1/stores",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"path": [
+								"v1",
+								"stores"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create store",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"Store 1234\",\n    \"location\": \"1742 3rd Avenue\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost/v1/stores",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"path": [
+								"v1",
+								"stores"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "Enable Spring Chaos Monkey",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/v1/actuator/chaosmonkey/enable",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"v1",
+						"actuator",
+						"chaosmonkey",
+						"enable"
+					]
+				},
+				"description": "Enable Spring Chaos Monkey at Runtime, Switch port between 8080 (products) and 8081 (stores)"
+			},
+			"response": []
+		},
+		{
+			"name": "Get Spring Chaos Monkey configuration",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/v1/actuator/chaosmonkey",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"v1",
+						"actuator",
+						"chaosmonkey"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Spring Chaos Monkey assaults config",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/v1/actuator/chaosmonkey/assaults",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"v1",
+						"actuator",
+						"chaosmonkey",
+						"assaults"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update Spring Chaos Monkey assaults config",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"level\": 5,\n    \"latencyRangeStart\": 1000,\n    \"latencyRangeEnd\": 3000,\n    \"latencyActive\": true,\n    \"exceptionsActive\": false,\n    \"exception\": {},\n    \"killApplicationActive\": false,\n    \"memoryActive\": false,\n    \"memoryMillisecondsHoldFilledMemory\": 90000,\n    \"memoryMillisecondsWaitNextIncrease\": 1000,\n    \"memoryFillIncrementFraction\": 0.15,\n    \"memoryFillTargetFraction\": 0.25,\n    \"runtimeAssaultCronExpression\": \"OFF\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/v1/actuator/chaosmonkey/assaults",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"v1",
+						"actuator",
+						"chaosmonkey",
+						"assaults"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"protocolProfileBehavior": {}
+}
